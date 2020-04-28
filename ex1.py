@@ -18,5 +18,9 @@ class Node:
         self.__right = d
         return self.__right
 
+    def __str__(self):
+        return "Donnée du noeud :"+str(self.__val) #+", fils droit :"+str(self.__right)+", fils gauche :"+str(self.__left)
+
+
 x = Node(13,2,9)
 print(x.getLeft())
