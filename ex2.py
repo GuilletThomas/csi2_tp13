@@ -19,13 +19,11 @@ class BinaryTree:
             return self.size(node.getLeft()) + 1 + self.size(node.getRight())
 
     def printValues(self, node):
-        print(node.getVal())
-        if node.getLeft() is None and node.getRight() is None:
-            return node.getVal()
+        if node is None:
+            return ""
 
         else:
-            return self.printValues(node.getLeft()) + 1 + self.printValues(node.getRight())
-
+            return self.printValues(node.getLeft()) + self.printValues(node.getRight()) + " " + str(node.getVal())
 
 
 
