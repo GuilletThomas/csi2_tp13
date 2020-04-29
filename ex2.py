@@ -21,11 +21,56 @@ class BinaryTree:
     def printValues(self, node):
         if node is None:
             return ""
-
         else:
             return self.printValues(node.getLeft()) + self.printValues(node.getRight()) + " " + str(node.getVal())
 
+    def sumValues(self, node):
+        if node is None:
+            return 0
+        else:
+            return self.sumValues(node.getLeft()) + self.sumValues(node.getRight()) + int(node.getVal())
 
+    def numberLeaves(self,node):
+        if node is None:
+            return 0
+        elif (node.getRight()==None and node.getLeft() == None):
+            return 1
+        else:
+            return self.numberLeaves(node.getLeft()) + self.numberLeaves(node.getRight())
+
+    def numberInternalNodes(self, node):
+        if node is None:
+            return 0
+        elif node.getRight() != None or node.getLeft() != None:
+            return 1 + self.numberInternalNodes(node.getLeft()) + self.numberInternalNodes(node.getRight())
+        else :
+            return 0
+
+    def height(self, node):
+        if node is None:
+            return -1
+        else:
+            leftHeight = self.height(node.getLeft())
+            rightHeight = self.height(node.getRight())
+            return max(leftHeight, rightHeight) + 1
+
+    #def height(self, node):
+            #if node == None:
+                #return 0
+            #return max(1 + self.size(node.getLeft()), 1 + self.size(node.getRight())) - 1
+
+
+    def belongs(self, node, val):
+        if node is None:
+            return False
+        if node.getVal()!=val:
+            return self.belongs(node.getRight(),val) or self.belongs(node.getLeft(),val)
+        else:
+            return True
+
+
+
+    #def ancestors(self, node, val):
 
 
 
@@ -49,5 +94,10 @@ Root = BinaryTree(nodeRoot)
 if __name__ == "__main__":
     print(Root.size(nodeRoot))
     print(Root.printValues(nodeRoot))
+    print(Root.sumValues(nodeRoot))
+    print(Root.numberLeaves(nodeRoot))
+    print(Root.numberInternalNodes(nodeRoot))
+    print(Root.height(nodeRoot))
+    print(Root.belongs(nodeRoot, 18))
 
 
